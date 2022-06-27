@@ -11,8 +11,7 @@
 		1617025128620F31009480FD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1617025028620F31009480FD /* ContentView.swift */; };
 		1617025328620F37009480FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1617025228620F37009480FD /* Assets.xcassets */; };
 		1617025628620F37009480FD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1617025528620F37009480FD /* Preview Assets.xcassets */; };
-		1617025D28621157009480FD /* DiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1617025C28621157009480FD /* DiceView.swift */; };
-		16689328286379D4008A2F1E /* RollingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16689327286379D4008A2F1E /* RollingView.swift */; };
+		16255A52286797DA008BBA05 /* AllDiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16255A51286797DA008BBA05 /* AllDiceResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,8 +20,7 @@
 		1617025028620F31009480FD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1617025228620F37009480FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1617025528620F37009480FD /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1617025C28621157009480FD /* DiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceView.swift; sourceTree = "<group>"; };
-		16689327286379D4008A2F1E /* RollingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollingView.swift; sourceTree = "<group>"; };
+		16255A51286797DA008BBA05 /* AllDiceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDiceResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +55,7 @@
 			children = (
 				1617024E28620F31009480FD /* LetsRollApp.swift */,
 				1617025028620F31009480FD /* ContentView.swift */,
-				16689327286379D4008A2F1E /* RollingView.swift */,
-				1617025C28621157009480FD /* DiceView.swift */,
+				16255A51286797DA008BBA05 /* AllDiceResult.swift */,
 				1617025228620F37009480FD /* Assets.xcassets */,
 				1617025428620F37009480FD /* Preview Content */,
 			);
@@ -144,8 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1617025128620F31009480FD /* ContentView.swift in Sources */,
-				1617025D28621157009480FD /* DiceView.swift in Sources */,
-				16689328286379D4008A2F1E /* RollingView.swift in Sources */,
+				16255A52286797DA008BBA05 /* AllDiceResult.swift in Sources */,
 				1617024F28620F31009480FD /* LetsRollApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

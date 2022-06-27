@@ -8,52 +8,74 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var results: [Int] = []
     
-    @State private var numberOfDicesIdx: Int = 0
-    
+    @State private var numberOfDice: Int = 1
     var sides = [4, 6, 8, 10, 12]
     @State private var numberOfSides: Int = 6
+    @State private var currentRoll = AllDiceResult(type: 0, number: 0)
     
-    @State private var isPresentingRolls = false
+    let columns: [GridItem] = [
+        .init(.adaptive(minimum: 30))
+    ]
+    
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State private var stoppedDice = 0
+    @State private var rollCount = 0
     
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    Picker("Number of dices", selection: $numberOfDicesIdx) {
-                        ForEach(1..<5) { number in
-                            Text("\(number)")
+            Form {
+                Section {
+                    Picker("Type of dice", selection: $numberOfSides) {
+                        ForEach(sides, id: \.self) {
+                            Text("\($0) sides")
                         }
                     }
-                    Section {
-                        Picker("Number of sides", selection: $numberOfSides) {
-                            ForEach(sides, id: \.self) { number in
-                                Text("\(number) sides")
-                            }
-                        }
-                        .pickerStyle(.segmented)
-                    } header: {
-                        Text("How many sides should each dice have?")
-                    }
+                    .pickerStyle(.segmented)
                     
-                    Button("Roll") {
-                        initResults()
-                        isPresentingRolls.toggle()
+                    Stepper("Number of dice: \(numberOfDice)", value: $numberOfDice, in: 1...10)
+                    HStack {
+                        Spacer()
+                        Button("Roll!", action: rollDice)
+                        Spacer()
                     }
-                    .frame(maxWidth: .infinity, alignment: .center)
+                } footer: {
+                    LazyVGrid(columns: columns) {
+                        ForEach(0..<currentRoll.results.count, id: \.self) { diceNumber in
+                            Image(systemName: "\(currentRoll.results[diceNumber]).square")
+//                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                                .aspectRatio(1, contentMode: .fit)
+                                .foregroundColor(.black)
+                                .background(.white)
+                                .cornerRadius(10)
+                                .shadow(radius: 3)
+                                .font(.title)
+                                .padding(5)
+                        }
+                    }
                 }
+                .disabled(stoppedDice < currentRoll.results.count)
             }
-            .navigationTitle("Let's Roll")
-            .sheet(isPresented: $isPresentingRolls) {
-                RollingView(numberOfSides: numberOfSides, results: $results)
+            .navigationTitle("Let'em Roll")
+            .onReceive(timer) { date in
+                updateDice()
             }
         }
     }
-    func initResults() {
-        results.removeAll()
-        for _ in 0...numberOfDicesIdx {
-            results.append(0)
+    func rollDice() {
+        stoppedDice = 0
+        rollCount = 0
+        currentRoll = AllDiceResult(type: numberOfSides, number: numberOfDice)
+    }
+    func updateDice() {
+        guard stoppedDice < currentRoll.results.count else { return }
+        for i in stoppedDice..<numberOfDice {
+            currentRoll.results[i] = Int.random(in: 1...numberOfSides)
+        }
+        rollCount += 1
+        if rollCount > 9 {
+            stoppedDice += 1
+            rollCount = 0
         }
     }
 }
