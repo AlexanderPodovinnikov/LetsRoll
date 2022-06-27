@@ -22,6 +22,8 @@ struct ContentView: View {
     @State private var stoppedDice = 0
     @State private var rollCount = 0
     
+    @State private var feedback = UIImpactFeedbackGenerator(style: .rigid)
+    
     var body: some View {
         NavigationView {
             Form {
@@ -73,6 +75,7 @@ struct ContentView: View {
             currentRoll.results[i] = Int.random(in: 1...numberOfSides)
         }
         rollCount += 1
+        feedback.impactOccurred()
         if rollCount > 9 {
             stoppedDice += 1
             rollCount = 0
